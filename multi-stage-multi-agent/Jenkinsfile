@@ -18,14 +18,19 @@ pipeline {
       }
     }
       stage('Front-end') {
-      agent {
-        docker { image 'java:latest' }
-      }
-      steps {
-        sh 'javac HelloWorld.java'
-        sh 'java HelloWorld'
-
-      }
+      stages {
+        stage('Build') {
+            steps {
+                sh 'javac HelloWorld.java'
+            }
+        }
+        
+        stage('Run') {
+            steps {
+                sh 'java HelloWorld'
+            }
+        }
     }
+}
   }
 }
