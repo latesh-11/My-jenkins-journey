@@ -17,20 +17,20 @@ pipeline {
         sh 'node --version'
       }
     }
-      stage('Front-end') {
-      stages {
-        stage('Build') {
-            steps {
-                sh 'javac HelloWorld.java'
-            }
-        }
-        
-        stage('Run') {
-            steps {
-                sh 'java HelloWorld'
-            }
-        }
-    }
-}
   }
-}
+stage {
+  agent any
+  
+  stage('build') {
+    steps {
+      sh 'javac HelloWorld.java'    
+    }
+  }
+  
+  stage('run') {
+    steps {
+      sh 'java HelloWorld'
+      }
+    }
+  }
+}  
